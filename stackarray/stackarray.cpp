@@ -1,4 +1,6 @@
 #include <iostream>
+#include <stdexcept>
+
 using namespace std;
 
 class stackarray
@@ -26,7 +28,7 @@ public:
 			data = newData;
 			size *= 2;
 		}
-		data[itop] = v; //äîáàâëåíèå â ñòåê ýëåìåíòà ìàññèâà
+		data[itop] = v;
 		itop++;
 	}
 	bool isempty()
@@ -46,9 +48,9 @@ public:
 	}
 
 private:
-	int size{ 0 }; //ðàçìåð
-	double* data{ nullptr }; // ìàññèâ
-	int itop{ 0 };// âåðøèíà ñòåêà
+	int size{ 0 };
+	double* data{ nullptr };
+	int itop{ 0 };
 };
 
 int main()
