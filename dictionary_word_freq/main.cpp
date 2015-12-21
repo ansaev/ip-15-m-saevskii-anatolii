@@ -13,14 +13,15 @@ void delchar(string &, char);
 
 class CountWorlder{
 private:
-    string separator = "!@#$%^&*()_{}[]:;'\|,<.>?/—-";
+    string separators = " !@#$%^&*()_{}[]:;'\|,<.>?/—-";
+    string write_separator = ":";
 public:
     CountWorlder(){
     }
     bool clean_str(string &str){
         bool found = false;
-        for(int i=0;i<this->separator.length();i++){
-            size_t pos = str.find(separator[i]);
+        for(int i=0;i<this->separators.length();i++){
+            size_t pos = str.find(separators[i]);
             if (pos != std::string::npos) {
                 str = str.erase(pos, 1);
                 found = true;
@@ -31,22 +32,41 @@ public:
     bool countWords(string input_file_path, string output_file_path){
         ifstream input_file;
         map<string, int> dictionary;
+        if ( !access(output_file_path.c_str(), 0) ) {
+            try {
+                setlocale(LC_ALL, "eng");
+                ifstream out_read(output_file_path);
+                string str;
+                while (!(out_read.eof())) {
+                    str = "";
+                    out_read >> str;
+                    size_t pos = str.find(this->write_separator);
+                    if(pos!=string::npos){
+                        string word = str.substr(0, pos);
+                        int num  = std::stoi( str.substr(pos+1, str.length()-pos) );
+                        dictionary.insert(pair<string, int>(word, num));
+                    }
+                }
+            } catch (std::ifstream::failure &readErr) {
+
+            }
+        }
         try {
             setlocale(LC_ALL, "eng");
             ifstream input_file(input_file_path);
             string str;
-            cout <<input_file.is_open()<< endl;
-
             while(!(input_file.eof())){
                 str = "";
                 input_file >> str;
                 boost::algorithm::to_lower(str);
                 while(this->clean_str(str)){}
-                auto iter = dictionary.find(str);
-                if(iter!= dictionary.end()){
-                    iter->second++;
-                } else{
-                    dictionary.insert(pair<string, int>(str,1));
+                if(str != "") {
+                    auto iter = dictionary.find(str);
+                    if (iter != dictionary.end()) {
+                        iter->second++;
+                    } else {
+                        dictionary.insert(pair<string, int>(str, 1));
+                    }
                 }
             }
         }catch(std::ifstream::failure &readErr){
@@ -57,7 +77,7 @@ public:
             ofstream fout(output_file_path);
             for (auto it = dictionary.begin(); it != dictionary.end(); ++it)
             {
-                fout << it->first << " : " << it->second << "\n";
+                fout << it->first << this->write_separator << it->second << "\n";
             }
         }catch(std::ofstream::failure &writeErr){
             cout<<"cannot write output file:"<<output_file_path<<endl;
