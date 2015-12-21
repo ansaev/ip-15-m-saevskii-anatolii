@@ -14,6 +14,7 @@ set(SOURCE_FILES_MATRIXARR matrixarr/main.cpp matrixarr/matrixarr.h)
 set(SOURCE_FILES_MATRIXNEC matrixnec/main.cpp matrixnec/matrixnec.h)
 set(SOURCE_FILES_QUEENARR queenarr/main.cpp queenarr/queenarr.h)
 set(SOURCE_FILES_QUEENLST queenlst/main.cpp queenlst/queenlst.h)
+set(SOURCE_FILES_DICTIONARYWORDFREQ dictionary_word_freq/main.cpp)
 
 add_executable(RationalNumber ${SOURCE_FILES_RATIONAL})
 add_executable(ComplexNumber ${SOURCE_FILES_COMPLEX} )
@@ -26,4 +27,5 @@ add_executable(MatrixArray ${SOURCE_FILES_MATRIXARR} )
 add_executable(MatrixNec ${SOURCE_FILES_MATRIXNEC} )
 add_executable(QueenArr ${SOURCE_FILES_QUEENARR} )
 add_executable(QueenLst ${SOURCE_FILES_QUEENLST} )
+add_executable(DictionaryWordFrequency ${SOURCE_FILES_DICTIONARYWORDFREQ} )
 

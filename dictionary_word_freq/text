@@ -1,0 +1,9 @@
+What the 10M Concurrent Connection Challenge means:
+10 million concurrent connections
+1 million connections/second - sustained rate at about 10 seconds a connections
+10 gigabits/second connection - fast connections to the Internet.
+10 million packets/second - expect current servers to handle 50K packets per second, this is going to a higher level. Servers used to be able to handle 100K interrupts per second and every packet caused interrupts.
+10 microsecond latency - scalable servers might handle the scale but latency would spike.
+10 microsecond jitter - limit the maximum latency
+10 coherent CPU cores - software should scale to larger numbers of cores. Typically software only scales easily to four cores. Servers can scale to many more cores so software needs to be rewritten to support larger core machines.
+
