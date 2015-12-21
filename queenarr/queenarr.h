@@ -1,5 +1,5 @@
-#ifndef H_QUEUEARR
-#define H_QUEUEARR
+#ifndef H_QUEENARR
+#define H_QUEENARR
 
 #include <iostream>
 #include <cassert>
@@ -149,7 +149,7 @@ std::ostream& QueenArr<T>::print(std::ostream& ostrim) const
 			ostrim << ", " << data_[i];
 		}
 	}
-	ostrim << ")"; // << " /*tail = " << tail_ << " head = " << head_ << " count = " << countElemntsQueue() << " */";
+	ostrim << ")";
 	return ostrim;
 }
 

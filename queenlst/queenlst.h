@@ -1,5 +1,5 @@
-#ifndef H_QUEUELST
-#define H_QUEUELST
+#ifndef H_QUEENLST
+#define H_QUEENLST
 
 #include <iostream>
 #include <cassert>
@@ -137,7 +137,6 @@ void QueueLst<T>::copy(const QueueLst<T>& rhs)
 		Element* tempRhs{ rhs.head_->next_ };
 		while (tempRhs != nullptr)
 		{
-			//push back
 			Element* temp{ new Element };
 			temp->data_ = tempRhs->data_;
 			temp->next_ = last->next_;
